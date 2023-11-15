@@ -1,0 +1,100 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:trippy/routes.dart';
+
+import 'Provider/provider_appstate.dart';
+
+void main() {
+  // 웹 환경에서 카카오 로그인을 정상적으로 완료하려면 runApp() 호출 전 아래 메서드 호출 필요
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  //화면 위로가게 회전방지
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      builder:(context,child){
+      return MultiProvider(
+        providers:[
+          ChangeNotifierProvider(create: (_) => ProviderAppstate()),
+        ],
+        child: MaterialApp(
+          title: '트리피',
+          debugShowCheckedModeBanner: false, // 디버깅 아이콘 X
+          theme: ThemeData(
+              useMaterial3: true,
+              scrollbarTheme: ScrollbarThemeData(
+                thumbVisibility: MaterialStateProperty.all(true),
+                thickness: MaterialStateProperty.all(10),
+                thumbColor: MaterialStateProperty.all(Colors.amber),
+                radius: const Radius.circular(10),
+              )),
+          initialRoute: "/main",
+          routes: route,
+          builder: (context, widget) {
+            return MediaQuery(
+              ///Setting font does not change with system font size
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: widget!,
+            );
+          },
+        ),
+      );
+      });
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}

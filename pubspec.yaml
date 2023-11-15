@@ -1,0 +1,45 @@
+name: trippy
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.9.0
+  google_fonts: ^6.1.0
+  provider: ^6.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/audio/
+
+  fonts:
+    - family: NotoSansKR
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Thin.otf
+          weight: 100
+        - asset: assets/fonts/NotoSansKR-Light.otf
+          weight: 300
+        - asset: assets/fonts/NotoSansKR-Regular.otf
+          weight: 400
+        - asset: assets/fonts/NotoSansKR-Medium.otf
+          weight: 500
+        - asset: assets/fonts/NotoSansKR-Bold.otf
+          weight: 700
+        - asset: assets/fonts/NotoSansKR-Black.otf
+          weight: 900
