@@ -23,9 +23,9 @@ class _MainAppBarState extends State<MainAppBar> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Image.asset(
-              'assets/images/logo.png',  // 로고 이미지 경로를 입력하세요.
+              'assets/images/logo.png',
               fit: BoxFit.contain,
-              height: 40.h,  // 로고의 높이를 설정하세요.
+              height: 40.h,
             ),
           ),
           Container(
