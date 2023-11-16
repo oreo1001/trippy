@@ -44,8 +44,8 @@ class _ImageGridState extends State<ImageGrid> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
-      height: 200.h,
+      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+      height: 180.h,
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1, // 한 행에 두 개의 이미지가 오도록 설정
@@ -53,37 +53,40 @@ class _ImageGridState extends State<ImageGrid> {
         scrollDirection: Axis.horizontal, // 가로로 스크롤하도록 설정
         itemCount: 6,
         itemBuilder: (context, position) {
-          return Stack(
-            children: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 3.w),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: Image.asset(
-              items[position]['image']!,  // 로고 이미지 경로를 입력하세요.
-                fit: BoxFit.contain,
-                height: 130.h,
-              ),
-            ),
-          ),
-              Positioned( // 텍스트를 이미지 위에 놓음
-                top: 10.w,
-                left: 10.w,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      items[position]['text1']!, // 텍스트
-                      style: TextStyle(fontSize: 13.0.sp, fontWeight: FontWeight.w700,color: Colors.white),
-                    ),
-                    Text(
-                      items[position]['text2']!, // 텍스트
-                      style: TextStyle(fontSize: 13.0.sp, fontWeight: FontWeight.w500,color: Colors.white),
-                    ),
-                  ],
+          return Container(
+            height: 250.h,
+            child: Stack(
+              children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 3.w),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0.sp),
+                child: Image.asset(
+                items[position]['image']!,  // 로고 이미지 경로를 입력하세요.
+                  fit: BoxFit.contain,
+                  height: 130.h,
                 ),
               ),
-            ],
+            ),
+                Positioned( // 텍스트를 이미지 위에 놓음
+                  top: 10.w,
+                  left: 10.w,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        items[position]['text1']!, // 텍스트
+                        style: TextStyle(fontSize: 13.0.sp, fontWeight: FontWeight.w700,color: Colors.white),
+                      ),
+                      Text(
+                        items[position]['text2']!, // 텍스트
+                        style: TextStyle(fontSize: 13.0.sp, fontWeight: FontWeight.w500,color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),

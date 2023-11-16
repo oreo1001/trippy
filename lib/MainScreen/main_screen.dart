@@ -1,12 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trippy/main_appbar.dart';
-import 'package:trippy/searchbar.dart';
+import 'package:trippy/MainScreen/main_appbar.dart';
+import 'package:trippy/MainScreen/searchbar.dart';
 
-import 'image_grid.dart';
-import 'image_slider.dart';
-import 'image_slider2.dart';
+import '../ImageSlider/image_grid.dart';
+import '../ImageSlider/image_slider.dart';
+import '../ImageSlider/image_slider2.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trippy/main_appbar.dart';
+import 'package:trippy/MainScreen/main_appbar.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});

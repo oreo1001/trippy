@@ -37,7 +37,7 @@ class _MainAppBarState extends State<MainAppBar> {
                     fontWeight: FontWeight.w500
                 )),
           ),
-          Divider(height: 5.h),
+          //Divider(height: 1.h),
         ],
       ),
     );

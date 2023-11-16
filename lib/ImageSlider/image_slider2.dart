@@ -27,7 +27,7 @@ class _ImageSlider2State extends State<ImageSlider2> {
             color: Colors.amber,
             child: Center(
               child: Text(
-                'Page $position',
+                '페이지 $position',
                 style: TextStyle(fontSize: 22.0),
               ),
             ),
