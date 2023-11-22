@@ -1,12 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:trippy/MainScreen/main_appbar.dart';
 import 'package:trippy/MainScreen/searchbar.dart';
 
 import '../ImageSlider/image_grid.dart';
 import '../ImageSlider/image_slider.dart';
 import '../ImageSlider/image_slider2.dart';
+import '../getX/get_controller.dart';
+import '../getX/react_controller.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -31,6 +35,8 @@ class _MainScreenState extends State<MainScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    Get.put(SimpleController()); // 단순 상태 관리 controller 등록
+    Get.put(ReactiveController()); // 반응형 상태 관리 controller 등록
     return Scaffold(
       appBar: MainAppBar(),
       body: Center(
@@ -86,6 +92,44 @@ class _MainScreenState extends State<MainScreen> {
                           color: Colors.black,
                           fontSize: 13.sp,
                         ))),
+                GetBuilder<SimpleController>( // 단순 상태 관리
+                  builder: (controller) {
+                    return ElevatedButton(
+                      child: Text(
+                        '[단순]현재 숫자: ${controller.counter}',
+                      ),
+                      onPressed: () {
+                        controller.increase();
+                        // Get.find<SimpleController>().increase();
+                      },
+                    );
+                  },
+                ),
+                GetX<ReactiveController>( // 반응형 상태관리 - 1
+                  builder: (controller) {
+                    return ElevatedButton(
+                      child: Text(
+                        '반응형 1 / 현재 숫자: ${controller.counter.value}', // .value 로 접근
+                      ),
+                      onPressed: () {
+                        controller.increase();
+                        // Get.find<ReactiveController>().increase();
+                      },
+                    );
+                  },
+                ),
+                Obx( // 반응형 상태관리 - 2
+                      () {
+                    return ElevatedButton(
+                      child: Text(
+                        '반응형 2 / 현재 숫자: ${Get.find<ReactiveController>().counter.value}', // .value 로 접근
+                      ),
+                      onPressed: () {
+                        Get.find<ReactiveController>().increase();
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ),
